@@ -39,26 +39,54 @@ using namespace std;
 
 
 //另一种实现方法
+//int ctoi(const char *c){
+//	int len=strlen(c);
+//	double dresult=0;
+//	int temp=0;
+//	try{
+//		for(int i=0;i<len;i++){
+//			temp=c[i]-'0';			
+//			if(temp<0||temp>9)
+//				throw 1;
+//			dresult+=temp*(pow(10.0,(double)(len-1-i)));
+//		}
+//	}
+//	catch(int a){
+//		printf("%s","输入数据出错！请输入只有数字的字符串\n错误代码:");
+//		return -1;
+//	}
+//	int iresult=int(dresult);
+//	return iresult;
+//}
+
+//纯算法实现
 int ctoi(const char *c){
-	int len=strlen(c);
-	double dresult=0;
-	int temp=0;
+	int result=0;
+	
+	
 	try{
-		for(int i=0;i<len;i++){
+		int i=0;
+		int a=0;
+		int temp=0;
+		for(;c[i+1]!=0;){
 			temp=c[i]-'0';
 			if(temp<0||temp>9)
 				throw 1;
-			dresult+=temp*(pow(10.0,(double)(len-1-i)));
+			a=(a+temp)*10;
+			i++;
 		}
+		int b=c[i]-'0';
+		if(b<0||b>9)
+			throw 1;
+		result=a+b;
 	}
 	catch(int a){
-		printf("%s","输入数据出错！请输入只有数字的字符串\n错误代码:");
+		printf("%s","输入输入数据出错！请输入只有数字的字符串\n错误代码:");
 		return -1;
 	}
-	int iresult=int(dresult);
-	return iresult;
-}
+	return result;
 
+}
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -97,7 +125,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		i=ctoi(str.c_str());
 		printf("%d\n",i);
 	}
-	
 	
 }
 
